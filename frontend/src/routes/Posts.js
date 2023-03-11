@@ -1,12 +1,11 @@
 import "./Posts.css";
 import PostsList from '../components/PostsList';
-import {useState} from 'react';
 import { Outlet } from "react-router-dom";
+import axios from "axios";
 
 
 
 function Posts() {
-  const [modalIsVisible, setModalIsVisible] = useState(false);
 
 
 
@@ -19,3 +18,10 @@ function Posts() {
 
 }
 export default Posts;
+
+
+export async function loader(){
+  const res = await axios.get("http://localhost:8080/posts");
+  console.log(res.data.posts);
+  return res.data.posts;
+}
